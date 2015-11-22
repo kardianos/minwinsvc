@@ -31,10 +31,9 @@ func init() {
 
 		guard.Lock()
 		defer guard.Unlock()
-		if onExit == nil {
-			os.Exit(0)
+		if onExit != nil {
+			onExit()
 		}
-		onExit()
 		// Make sure we exit.
 		os.Exit(0)
 	}()
