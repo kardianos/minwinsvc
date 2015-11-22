@@ -30,9 +30,12 @@ func init() {
 		_ = svc.Run("", runner{})
 
 		guard.Lock()
-		defer guard.Unlock()
-		if onExit != nil {
-			onExit()
+		f := onExit
+		guard.Unlock()
+
+		// Don't hold this lock in user code.
+		if f != nil {
+			f()
 		}
 		// Make sure we exit.
 		os.Exit(0)
