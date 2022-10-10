@@ -2,7 +2,8 @@
 // Use of this source code is governed by a zlib-style
 // license that can be found in the LICENSE file.package service
 
-//+build !windows
+//go:build !windows
+// +build !windows
 
 package minwinsvc
 

@@ -5,7 +5,9 @@
 // Minimal non-invasive windows only service stub.
 //
 // Import to allow running as a windows service.
-//   import _ "github.com/kardianos/minwinsvc"
+//
+//	import _ "github.com/kardianos/minwinsvc"
+//
 // This will detect if running as a windows service
 // and install required callbacks for windows.
 package minwinsvc
