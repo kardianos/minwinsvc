@@ -12,6 +12,7 @@ concurrency:
 
 jobs:
   build:
+    name: minwinsvc (Go ${{ matrix.go }} / ${{ matrix.goos }})
     runs-on: ubuntu-latest
 
     strategy:
