@@ -1,0 +1,35 @@
+name: Go
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: minwinsvc (Go ${{ matrix.go }} / ${{ matrix.goos }})
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        go: ["1.15", "1.16", "1.17", "1.18", "1.19"]
+        goos: ["linux", "windows"]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup (Go ${{ matrix.go }} / ${{ matrix.goos }})
+        uses: actions/setup-go@v3
+        with:
+          go-version: ${{ matrix.go }}
+
+      - name: Build (Go ${{ matrix.go }} / ${{ matrix.goos }})
+        run: go build -v .
+        env:
+          GOOS: ${{ matrix.goos }}
