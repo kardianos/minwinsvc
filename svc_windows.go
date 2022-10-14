@@ -20,7 +20,7 @@ var (
 )
 
 func init() {
-	isService, err := svc.IsService()
+	isService, err := svc.IsWindowsService()
 	if err != nil {
 		panic(err)
 	}
